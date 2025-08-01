@@ -1,0 +1,43 @@
+Below is a list of common linked list functions along with a brief description of what each does:
+
+append(value):
+Adds a new node with the given value to the end of the list.
+
+prepend(value):
+Inserts a new node at the beginning of the list, making it the new head.
+
+insert(index, value):
+Inserts a new node at a specific position (index) in the list. Inserting at index 0 acts like a prepend, and inserting at an index equal to the list's size acts like an append.
+
+pop():
+Removes the last element (tail) from the list and returns its value. In a singly linked list, this usually requires traversing the list to reach the node before the last.
+
+popfirst() / pop_front():
+Removes the first element (head) of the list and returns its value, usually by updating the head pointer to the next node.
+
+delete(value) or remove(index):
+Removes a node either by matching a specific value or by specifying its position (index) in the list.
+
+get(index):
+Retrieves the value (or node) at a given index. Since linked lists are sequential, this involves iterating from the head until the desired position is reached.
+
+set(index, newValue):
+Updates the node at the specified index with a new value. Like get, it requires traversing the list to the correct position.
+
+search(value) / find(value):
+Looks for a node with a particular value and typically returns the node or its index. This helps to determine if a value exists in the list.
+
+display() / traverse():
+Iterates through the list, often printing or returning a collection of all the elements. This is useful for visualizing or debugging the list.
+
+reverse():
+Reverses the order of the nodes in the list, so the head becomes the tail and vice versa.
+
+length() / size():
+Returns the number of nodes currently in the list, which is useful for validations and iterations.
+
+clear():
+Empties the list by removing all nodes, resetting it to an initial state.
+
+isEmpty():
+Checks whether the list contains any nodes, returning true if it’s empty and false otherwise.

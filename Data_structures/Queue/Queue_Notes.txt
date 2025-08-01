@@ -1,0 +1,44 @@
+🚶 QUEUE
+A Queue is a First In, First Out (FIFO) data structure.
+
+Think of it like a line at a ticket counter — the first person to enter the line is the first to get served.
+
+🔁 Operations:
+Enqueue – Add item to the rear
+
+Dequeue – Remove item from the front
+
+Front – View the item at the front
+
+isEmpty – Check if queue is empty
+
+📦 Example with 1, 2, 3, 4, 5:
+Enqueue these elements:
+
+Enqueue 1
+Queue: [1]
+
+Enqueue 2
+Queue: [1, 2]
+
+Enqueue 3
+Queue: [1, 2, 3]
+
+Enqueue 4
+Queue: [1, 2, 3, 4]
+
+Enqueue 5
+Queue: [1, 2, 3, 4, 5]
+Dequeue operations:
+plaintext
+Copy
+Edit
+Dequeue → 1
+Queue: [2, 3, 4, 5]
+
+Dequeue → 2
+Queue: [3, 4, 5]
+
+Front → 3
+✅ First in = 1 → First out.
+

@@ -1,0 +1,69 @@
+🌳 What is a Tree Data Structure?
+A tree is a non-linear, hierarchical data structure made up of nodes, where:
+
+The top node is called the root.
+
+Each node can have zero or more children.
+
+There are no cycles (unlike graphs).
+
+🧱 Basic Terminology
+
+Term	Meaning
+Root	The topmost node in the tree
+Node	An element containing data and references to child nodes
+Parent	A node that has child nodes
+Child	A node that descends from another node
+Leaf	A node with no children
+Edge	The connection between two nodes
+Height	The number of edges on the longest path from root to a leaf
+Depth	The number of edges from the root to a particular node
+Subtree	A tree formed from a node and its descendants
+
+🌲 Types of Trees
+1. Binary Tree
+Each node has at most two children: left and right.
+
+Example:
+
+markdown
+Copy
+Edit
+    1
+   / \
+  2   3
+2. Binary Search Tree (BST)
+A binary tree with ordered nodes:
+
+Left child < Parent < Right child
+
+3. Balanced Binary Tree
+Tree where height difference between left and right subtree is minimal (e.g., AVL, Red-Black Tree)
+
+4. N-ary Tree
+Each node can have N number of children.
+
+5. Trie (Prefix Tree)
+Used for string manipulation (like autocomplete).
+
+Each node represents a character of a word.
+
+6. Heap (Binary Heap)
+A complete binary tree used in priority queues.
+
+Min-heap: Parent ≤ Children
+
+Max-heap: Parent ≥ Children
+
+🔄 Tree Traversals
+Depth-First Search (DFS)
+
+Inorder (Left → Root → Right)
+
+Preorder (Root → Left → Right)
+
+Postorder (Left → Right → Root)
+
+Breadth-First Search (BFS)
+
+Level-order traversal (top-down, left to right)

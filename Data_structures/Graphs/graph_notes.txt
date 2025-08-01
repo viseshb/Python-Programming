@@ -1,0 +1,58 @@
+===============================
+📘 GRAPH DATA STRUCTURE NOTES
+===============================
+
+🧠 What is a Graph?
+-------------------
+A graph is a non-linear data structure made up of:
+- Vertices (Nodes): Entities
+- Edges (Links): Relationships between entities
+
+⚙️ Graph Representations:
+--------------------------
+1. Adjacency List (Used in code ✅)
+   - Dictionary where keys = vertices, values = list of neighbors
+2. Adjacency Matrix
+   - 2D array: matrix[i][j] = 1 if edge exists
+3. Edge List
+   - List of edges like: [(A, B), (B, C), (C, D)]
+
+📦 Types of Graphs:
+--------------------
+- Undirected ✅ (Edges go both ways)
+- Directed (Edges go one way)
+- Weighted (Each edge has a weight or cost)
+- Unweighted ✅ (Edges are plain connections)
+- Cyclic (Contains a cycle)
+- Acyclic (No cycles)
+- Connected (All vertices reachable)
+- Disconnected (Some vertices unreachable)
+
+📜 Graph Operations (From Code):
+---------------------------------
+- add_vertex(v): Adds node v if not already present
+- add_edge(v1, v2): Adds an undirected edge between v1 and v2
+- remove_edge(v1, v2): Removes the edge connecting v1 and v2
+- remove_vertex(v): Removes a vertex and all its connected edges
+- print_graph(): Prints the adjacency list
+
+🧪 Example:
+------------
+Graph before:
+    A: [B, C, D]
+    B: [A, D]
+    C: [A, D]
+    D: [A, B, C]
+
+After removing edge A-D and vertex D:
+    A: [B, C]
+    B: [A]
+    C: [A]
+
+⏱️ Time Complexities (Adjacency List):
+---------------------------------------
+- Add Vertex        → O(1)
+- Add Edge          → O(1)
+- Remove Edge       → O(E)
+- Remove Vertex     → O(V + E)
+- Print Graph       → O(V + E)

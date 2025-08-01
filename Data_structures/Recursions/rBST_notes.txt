@@ -1,0 +1,70 @@
+# 🧠 Binary Search Tree (BST) - Python Implementation Notes
+
+## ✅ Overview
+A **Binary Search Tree (BST)** is a binary tree where:
+- Left child < Parent node
+- Right child > Parent node
+- No duplicate values allowed
+
+---
+
+## 📦 Features Implemented
+
+### 1. `insert(value)`
+- Implemented recursively using `_r_insert()` and `__r_insert()`
+- Skips duplicates
+- Maintains BST property
+
+### 2. `contains(value)`
+- Recursive search using `_r_contains()` and `__r_contains()`
+- Returns `True` if found, `False` otherwise
+
+### 3. `min_val(node)`
+- Finds the **minimum** value from a given node
+- Follows the **leftmost** path
+
+### 4. `max_val(node)`
+- Finds the **maximum** value from a given node
+- Follows the **rightmost** path
+
+### 5. `delete(value)`
+- Recursive delete using `_r_delete_node()` and `__r_delete_node()`
+- Handles all 3 deletion cases:
+  - No children (leaf)
+  - One child
+  - Two children (replaced by in-order successor)
+
+### 6. `print_tree()`
+- In-order traversal of the BST
+- Outputs values in sorted order
+
+---
+
+## 🔁 Method Summary
+
+| Method                   | Purpose                                |
+|--------------------------|----------------------------------------|
+| `_r_insert(value)`       | Public insert method                   |
+| `__r_insert(node, value)`| Internal recursive insert              |
+| `_r_contains(value)`     | Public search method                   |
+| `__r_contains(node, value)` | Internal recursive search          |
+| `min_val(node)`          | Returns smallest value from subtree    |
+| `max_val(node)`          | Returns largest value from subtree     |
+| `_r_delete_node(value)`  | Public delete method                   |
+| `__r_delete_node(node, value)` | Internal recursive delete       |
+| `print_tree()`           | Displays sorted values (in-order)      |
+
+---
+
+## 🌲 Example Tree
+
+After these insertions:
+
+```python
+myTree._r_insert(47)
+myTree._r_insert(21)
+myTree._r_insert(76)
+myTree._r_insert(18)
+myTree._r_insert(27)
+myTree._r_insert(52)
+myTree._r_insert(82)
