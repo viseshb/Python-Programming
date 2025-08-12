@@ -1,8 +1,8 @@
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.losses import BinaryCrossentropy
-from tensorflow.keras import Sequential
+from keras.layers import Dense
+from keras.losses import BinaryCrossentropy
+from keras.models import Sequential
 import matplotlib.pyplot as plt
 import os
 
