@@ -48,7 +48,7 @@ def my_predict(X, w1, b1, w2, b2):
         p[i, 0] = my_sequential(X[i], w1, b1, w2, b2).item()
     return p
 
-# --- Main Execution ---
+# --- Main Execution --- 
 X, Y = load_coffee_data()
 Xn, mu, sigma = normalize(X)
 
