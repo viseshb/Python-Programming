@@ -32,12 +32,15 @@ Xn, mu, sigma = normalize(X)
 
 # --- Model Definition ---
 model = Sequential([    
-    Dense(10, activation='relu'),
-    Dense(5, activation='relu'),
-    Dense(1, activation='sigmoid')
+    Dense(10, activation='relu'),       # First hidden layer: 10 neurons, ReLU activation for non-linearity
+    Dense(5, activation='relu'),        # Second hidden layer: 5 neurons, ReLU activation
+    Dense(1, activation='sigmoid')      # Output layer: 1 neuron, sigmoid to output probability between 0 and 1
+    # Dense(1, activation='linear')     # (Alternative) Output raw logits instead of probabilities
 ])
 
-model.compile(loss=BinaryCrossentropy())
+model.compile(loss=BinaryCrossentropy())        # Binary cross-entropy loss; expects probabilities (from_logits=False by default)
+# model.compile(loss=BinaryCrossentropy(from_logits=True))  # Use this if output layer is linear (logits); loss will apply sigmoid internally
+
 
 # --- Train Model ---
 model.fit(Xn, Y, epochs=300)
