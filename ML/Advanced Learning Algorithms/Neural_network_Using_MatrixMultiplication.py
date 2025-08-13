@@ -1,4 +1,7 @@
+# Decision Boundary Plot for Coffee Roast Classifier (2-layer NN with given weights)
 import numpy as np
+import matplotlib.pyplot as plt
+import os
 
 # --- Custom Data Generator ---
 def load_coffee_data():
@@ -58,23 +61,34 @@ b1 = np.array([-9.82, -9.28, 0.96])
 w2 = np.array([[-31.18], [-27.59], [-32.56]])
 b2 = np.array([15.41])
 
-# --- Test Predictions ---
-X_test = np.array([
-    [200, 13.9],  # Likely a good roast
-    [200, 17.0]   # Overcooked
-])
-X_test_norm = (X_test - mu) / sigma
-preds = my_predict(X_test_norm, w1, b1, w2, b2)
+# --- Grid for Decision Boundary ---
+t_vals = np.linspace(150, 285, 300)
+d_vals = np.linspace(11.5, 15.5, 300)
+tt, dd = np.meshgrid(t_vals, d_vals)
+grid = np.c_[tt.ravel(), dd.ravel()]
+grid_norm = (grid - mu) / sigma
 
-print("Raw Prediction Probabilities (Confidence Scores):")
-for i in range(len(preds)):
-    print(f"Example {i+1}: {preds[i, 0]:.2f}")
+# Predict probabilities over the grid
+grid_pred = my_predict(grid_norm, w1, b1, w2, b2).reshape(tt.shape)
 
+# ======== Visualization Directory ========
+current_dir = os.path.dirname(__file__)
+save_dir = os.path.abspath(os.path.join(current_dir, "..","images/Neural_Networks"))
+os.makedirs(save_dir, exist_ok=True)
 
-# Threshold for classification
-yhat = (preds >= 0.5).astype(int)
+# --- Plot ---
+plt.figure(figsize=(8, 6))
+# Filled contour for probability regions (0 to 1 with 0.5 threshold)
+plt.contourf(tt, dd, grid_pred, levels=[0, 0.5, 1], cmap="bwr", alpha=0.3)
+# Scatter the original points
+plt.scatter(X[:, 0], X[:, 1], c=Y.flatten(), cmap="bwr", edgecolor='k', s=15)
+cbar = plt.colorbar()
+cbar.set_label("Probability of Good Roast")
+plt.xlabel("Temperature (°C)")
+plt.ylabel("Duration (min)")
+plt.title("Decision Boundary: Coffee Roast Classifier")
+plt.grid(True)
+plt.tight_layout()
 
-print("Input Temperatures and Durations:")
-print(X_test)
-print("Predicted Classes (1 = Good Roast, 0 = Bad Roast):")
-print(yhat)
+plt.savefig(os.path.join(save_dir, "Neural_Networks_Decision_Boundary_Using_Matrix_Multiplication.png"))
+plt.show()

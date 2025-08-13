@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import os
 
 # --- Custom Data Generator ---
 def load_coffee_data():
@@ -28,7 +30,7 @@ def normalize(X):
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
-# --- Dense Layer ---
+# --- Dense Layer (loop version to match your code) ---
 def my_dense(a_in, w, b):
     units = w.shape[1]
     a_out = np.zeros(units)
@@ -55,29 +57,34 @@ def my_predict(X, w1, b1, w2, b2):
 X, Y = load_coffee_data()
 Xn, mu, sigma = normalize(X)
 
-# Pretrained weights from previous TensorFlow model
+# Pretrained weights (given)
 w1 = np.array([[-8.93, 0.29, 12.9], [-0.1, -7.32, 10.81]])
 b1 = np.array([-9.82, -9.28, 0.96])
 w2 = np.array([[-31.18], [-27.59], [-32.56]])
 b2 = np.array([15.41])
 
-# --- Test Predictions ---
-X_test = np.array([
-    [200, 13.9],  # Likely a good roast
-    [200, 17.0]   # Overcooked
-])
-X_test_norm = (X_test - mu) / sigma
-preds = my_predict(X_test_norm, w1, b1, w2, b2)
+# ======== Visualization Directory ========
+current_dir = os.path.dirname(__file__)
+save_dir = os.path.abspath(os.path.join(current_dir, "..","images/Neural_Networks"))
+os.makedirs(save_dir, exist_ok=True)
+# --- Decision Boundary Plot ---
+t_vals = np.linspace(150, 285, 200)
+d_vals = np.linspace(11.5, 15.5, 200)
+tt, dd = np.meshgrid(t_vals, d_vals)
+grid = np.c_[tt.ravel(), dd.ravel()]
+grid_norm = (grid - mu) / sigma
+grid_pred = my_predict(grid_norm, w1, b1, w2, b2).reshape(tt.shape)
 
-print("Raw Prediction Probabilities (Confidence Scores):")
-for i in range(len(preds)):
-    print(f"Example {i+1}: {preds[i, 0]:.2f}")
+plt.figure(figsize=(8, 6))
+plt.contourf(tt, dd, grid_pred, levels=[0, 0.5, 1], cmap="bwr", alpha=0.3)
+plt.scatter(X[:, 0], X[:, 1], c=Y.flatten(), cmap="bwr", edgecolor='k', s=15)
+cbar = plt.colorbar()
+cbar.set_label("Probability of Good Roast")
+plt.xlabel("Temperature (°C)")
+plt.ylabel("Duration (min)")
+plt.title("Decision Boundary: Coffee Roast Classifier")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig(os.path.join(save_dir, "Neural_Networks_Decision_Boundary_Using_Python.png"))
+plt.show()
 
-
-# Threshold for classification
-yhat = (preds >= 0.5).astype(int)
-
-print("Input Temperatures and Durations:")
-print(X_test)
-print("Predicted Classes (1 = Good Roast, 0 = Bad Roast):")
-print(yhat)
