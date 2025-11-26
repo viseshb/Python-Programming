@@ -57,7 +57,7 @@ def gradient_descent(x, y, w, b, alpha, iterations, lambda_):
 def predict(x, w, b, mu, sigma):
     x = np.array(x)
     if np.any(x < mu - 3 * sigma) or np.any(x > mu + 3 * sigma):
-        print(f"⚠️ Warning: Input {x.tolist()} may be out-of-distribution.")
+        print(f" Warning: Input {x.tolist()} may be out-of-distribution.")
     x_norm = (x - mu) / sigma
     return max(0, x_norm @ w + b)
 
